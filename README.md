@@ -1,2 +1,2 @@
 # face-pos-detector
-helper app to detect position of a face
+helper app to detect position of a face using HAAR features
