@@ -7,23 +7,20 @@
 
 namespace fr {
 namespace common {
+
 class Logger
 {
-public:
-    enum class LogLevel {
-        TRACE = 0,
-        DEBUG,
-        INFO,
-        WARN,
-        ERROR,
-        CRITICAL,
-        FATAL
-    };
 
 public:
     Logger(const std::string &loggerName);
 
+    void trace(const std::string &msg);
+    void debug(const std::string &msg);
+    void info(const std::string &msg);
     void warn(const std::string &msg);
+    void error(const std::string &msg);
+    void critical(const std::string &msg);
+
 
 private:
     void configureLogsDirectory(const std::string &relativeLogDirectory);
@@ -34,6 +31,7 @@ private:
     std::string m_logsDirectory;
     std::string m_logFilePath;
 };
+
 } // namespace common
 } // namespace fr
 
