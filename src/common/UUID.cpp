@@ -1,8 +1,9 @@
 #include "UUID.hpp"
 #include <random>
 
-namespace fpd
-{
+namespace fr {
+
+namespace common {
 
 namespace
 {
@@ -23,4 +24,5 @@ UUID::UUID():
 {
 }
 
-} // namespace fpd
+} // namespace common
+} // namespace fr

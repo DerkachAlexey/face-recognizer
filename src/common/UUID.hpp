@@ -3,8 +3,9 @@
 
 #include <cstdint>
 
-namespace fpd
-{
+namespace fr {
+
+namespace common {
 
 class UUID
 {
@@ -17,6 +18,7 @@ private:
     uint64_t m_secondCode;
 };
 
-} // namespace fpd
+} // namespace common
+} // namespace fr
 
 #endif
