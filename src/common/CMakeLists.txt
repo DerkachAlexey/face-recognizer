@@ -5,7 +5,9 @@ set(COMMON_SRC
             Logger.hpp
             Logger.cpp
             UUID.hpp
-            UUID.cpp)
+            UUID.cpp
+	    ArgsParser.hpp
+	    ArgsParser.cpp)
 
 add_library(common ${COMMON_SRC})
 target_link_libraries(common spdlog argparse)

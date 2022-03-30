@@ -1,11 +1,12 @@
 #include "Application.hpp"
+#include "Constants.hpp"
 
 namespace fr {
 
 namespace common {
 
-Application::Application(int argc, char **argv)
-    : m_logger("fr.common.Application") {
+Application::Application(int argc, char **argv) : m_logger("fr.common.Application")
+{
     m_logger.info("Application started");
 }
 } // namespace common
