@@ -16,6 +16,9 @@ inline const std::string logDirectoryName{"logs"};
 inline const std::string logFileName{"FaceRecognition.log"};
 inline const std::string logPattern{
     "[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v"};
+
+// sources constants
+inline const std::string defaultSrcFolder{"sourceFiles"};
 } // namespace constants
 } // namespace common
 } // namespace fr

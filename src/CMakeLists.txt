@@ -1,4 +1,6 @@
 include_directories(common)
+include_directories(services)
 add_subdirectory(common)
+add_subdirectory(services)
 add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} common)
+target_link_libraries(${PROJECT_NAME} common services)

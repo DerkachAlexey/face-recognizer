@@ -2,6 +2,7 @@
 #define COMMON_APPLICATION
 
 #include "Logger.hpp"
+#include "ArgsInterpreter.hpp"
 
 namespace fr {
 
@@ -14,6 +15,8 @@ public:
 
 private:    
     Logger m_logger;
+    ArgumentsInterpreter m_argsInterpreter;
+
 };
 
 } // namespace common
