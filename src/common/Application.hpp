@@ -2,8 +2,7 @@
 #define COMMON_APPLICATION
 
 #include "Logger.hpp"
-
-#include <argparse/argparse.hpp>
+#include "ArgsInterpreter.hpp"
 
 namespace fr {
 
@@ -14,9 +13,10 @@ class Application
 public:
     Application(int argc, char **argv);
 
-private:
-    argparse::ArgumentParser m_argsParser;
+private:    
     Logger m_logger;
+    ArgumentsInterpreter m_argsInterpreter;
+
 };
 
 } // namespace common

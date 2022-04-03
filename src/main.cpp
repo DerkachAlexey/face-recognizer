@@ -1,7 +1,16 @@
 #include "Application.hpp"
+#include "EnumNamesProvider.hpp"
+#include "ServicesLocator.hpp"
 
-int main(int argc, char** argv)
-{
-    fr::common::Application app(argc, argv);
-    return 0;
+void registerServices() {
+
+  auto namesProvider = std::make_shared<fr::services::EnumNamesProvider>();
+  fr::services::ServicesLocator::registerService<
+      fr::services::EnumNamesProvider>(namesProvider);
+}
+
+int main(int argc, char **argv) {
+  registerServices();
+  fr::common::Application app(argc, argv);
+  return 0;
 }
