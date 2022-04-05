@@ -5,9 +5,11 @@
 
 #include "Enums.hpp"
 
-namespace fr {
+namespace fr
+{
 
-namespace common {
+namespace common
+{
 
 class ArgumentsInterpreter
 {

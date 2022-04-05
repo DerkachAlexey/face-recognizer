@@ -2,11 +2,11 @@
 
 #include <map>
 
-namespace fr {
+namespace fr
+{
 
-namespace services {
-
-EnumNamesProvider::EnumNamesProvider() {}
+namespace services
+{
 
 std::string EnumNamesProvider::getName(enums::ApplicationMode mode) const {
   static const auto appModesNames =

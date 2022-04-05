@@ -4,11 +4,14 @@
 #include <cstdint>
 #include <functional>
 
-namespace fr {
+namespace fr
+{
 
-namespace common {
+namespace common
+{
 
-class UUID {
+class UUID
+{
 public:
   UUID(uint64_t firstCode, uint64_t secondCode);
   UUID();
@@ -25,11 +28,14 @@ private:
 } // namespace common
 } // namespace fr
 
-namespace std {
+namespace std
+{
 
-template <> struct hash<fr::common::UUID> {
+template <> struct hash<fr::common::UUID>
+{
 
-  std::size_t operator()(const fr::common::UUID &uuid) const {
+  std::size_t operator()(const fr::common::UUID &uuid) const
+  {
     size_t firstCodeHash = hash<uint64_t>()(uuid.getCodes()[0]);
     size_t secondCodeHash = hash<uint64_t>()(uuid.getCodes()[1]);
     return firstCodeHash ^ (secondCodeHash << 1);
