@@ -6,13 +6,16 @@
 
 #include <string>
 
-namespace fr {
+namespace fr
+{
 
-namespace services {
+namespace services
+{
 
-class EnumNamesProvider : public IService {
+class EnumNamesProvider : public IService
+{
 public:
-  EnumNamesProvider();
+  EnumNamesProvider() = default;
 
   std::string getName(enums::ApplicationMode mode) const;
 };

@@ -7,11 +7,14 @@
 
 #include "Constants.hpp"
 
-namespace fr {
-namespace common {
+namespace fr
+{
 
-class Logger {
+namespace common
+{
 
+class Logger
+{
 public:
   Logger(const std::string &loggerName);
 

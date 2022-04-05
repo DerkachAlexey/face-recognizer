@@ -3,12 +3,14 @@
 
 #include <string>
 
-namespace fr {
+namespace fr
+{
 
-namespace common {
+namespace common
+{
 
-namespace constants {
-
+namespace constants
+{
 inline const std::string applicationName{"FaceRecognizer"};
 
 // logs constants
@@ -19,6 +21,9 @@ inline const std::string logPattern{
 
 // sources constants
 inline const std::string defaultSrcFolder{"sourceFiles"};
+
+// args constants
+inline const std::string modeArg{"--mode"};
 } // namespace constants
 } // namespace common
 } // namespace fr

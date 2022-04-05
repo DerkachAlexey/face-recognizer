@@ -4,9 +4,11 @@
 #include "Logger.hpp"
 #include "ArgsInterpreter.hpp"
 
-namespace fr {
+namespace fr
+{
 
-namespace common {
+namespace common
+{
 
 class Application
 {

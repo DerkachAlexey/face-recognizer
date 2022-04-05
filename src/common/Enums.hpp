@@ -1,9 +1,11 @@
 #ifndef COMMON_ENUMS
 #define COMMON_ENUMS
 
-namespace fr {
+namespace fr
+{
 
-namespace enums {
+namespace enums
+{
 
 enum class ApplicationMode
 {
