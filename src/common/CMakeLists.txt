@@ -1,6 +1,12 @@
 set(COMMON_SRC
-            Application.hpp
-            Application.cpp
+            application/IApplicationExecutor.hpp
+            application/IApplication.hpp
+            application/Application.hpp
+            application/Application.cpp
+            application/ApplicationExecutorFactory.hpp
+            application/PhotosApplicationExecutor.hpp
+            application/PhotosApplicationExecutor.cpp
+            application/ApplicationExecutorFactory.cpp
             Constants.hpp
             Logger.hpp
             Logger.cpp

@@ -16,7 +16,7 @@ enum class ApplicationMode
     UNKNOWN = 4
 };
 
-}
+} // namespace enums
 } // namespace fr
 
 #endif

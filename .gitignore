@@ -33,3 +33,6 @@
 
 # Folders
 build
+
+#Qt generated files
+*.user
