@@ -11,6 +11,7 @@ namespace common
 
 namespace constants
 {
+
 inline const std::string applicationName{"FaceRecognizer"};
 
 // logs constants
@@ -24,6 +25,7 @@ inline const std::string defaultSrcFolder{"sourceFiles"};
 
 // args constants
 inline const std::string modeArg{"--mode"};
+
 } // namespace constants
 } // namespace common
 } // namespace fr

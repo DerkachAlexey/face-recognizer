@@ -1,4 +1,4 @@
-#include "Application.hpp"
+#include "Logger.hpp"
 
 #include <filesystem>
 #include <fstream>
