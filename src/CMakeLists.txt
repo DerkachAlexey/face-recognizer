@@ -1,6 +1,8 @@
 include_directories(common)
 include_directories(services)
+include_directories(cvDomain)
 add_subdirectory(common)
 add_subdirectory(services)
+add_subdirectory(cvDomain)
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} common services)
