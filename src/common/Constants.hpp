@@ -14,14 +14,21 @@ namespace constants
 
 inline const std::string applicationName{"FaceRecognizer"};
 
+// filesystem constants
+
+// TODO: make reusable for different platforms
+inline const std::string projectRoot{"FaceRecognition"};
+
+inline const std::string filesExtensionSeparator{"."};
+inline const std::string photosDatabaseFolder{"photosDatabase"};
+inline const std::string sourcePhotosFolder{"sourcePhotos"};
+
 // logs constants
 inline const std::string logDirectoryName{"logs"};
-inline const std::string logFileName{"FaceRecognition.log"};
+inline const std::string logFileName{"FaceRecognition"};
+inline const std::string logFileExtension{"log"};
 inline const std::string logPattern{
     "[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v"};
-
-// sources constants
-inline const std::string defaultSrcFolder{"sourceFiles"};
 
 // args constants
 inline const std::string modeArg{"--mode"};

@@ -2,6 +2,7 @@
 #define COMMON_APPLICATION_PHOTOSAPPLICATIONEXECUTOR_H
 
 #include "IApplicationExecutor.hpp"
+#include "Logger.hpp"
 
 namespace fr
 {
@@ -13,6 +14,9 @@ class PhotosApplicationExecutor : public IApplicationExecutor
 {
 public:
     void execute() override;
+
+private:
+    Logger m_logger{"fr.common.application.PhotosApplicationExecutor"};
 };
 
 } // namespace fr

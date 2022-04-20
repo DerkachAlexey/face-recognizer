@@ -24,11 +24,9 @@ public:
   {
     auto uniqueId = getUUIDOfService<LocatableService>();
 
-    if (m_services.find(uniqueId) != m_services.end()) {
-      m_logger.warn("Service already registered, UUID:" +
-                    std::to_string(std::hash<common::UUID>()(uniqueId)));
-
-      return;
+    if (m_services.find(uniqueId) != m_services.end())
+    {
+        return;
     }
 
     m_services[uniqueId] = service;
@@ -38,11 +36,9 @@ public:
   {
     auto uniqueId = getUUIDOfService<LocatableService>();
 
-    if (m_services.find(uniqueId) == m_services.end()) {
-      m_logger.critical("Service is not registered, UUID:" +
-                        std::to_string(std::hash<common::UUID>()(uniqueId)));
-
-      throw std::invalid_argument("Tried to obtain unregistered service");
+    if (m_services.find(uniqueId) == m_services.end())
+    {
+        throw std::invalid_argument("Tried to obtain unregistered service");
     }
 
     return dynamic_cast<LocatableService*>(m_services.at(uniqueId).get());
@@ -56,7 +52,6 @@ public:
 
 private:
   inline static std::map<common::UUID, std::shared_ptr<IService>> m_services{};
-  inline static common::Logger m_logger{"fr.services.ServicesLocator"};
 };
 
 } // namespace services

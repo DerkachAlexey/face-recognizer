@@ -26,13 +26,7 @@ public:
   void critical(const std::string &msg);
 
 private:
-  void configureLogsDirectory(const std::string &relativeLogDirectory);
-  void configureLogFile(const std::string &logFile);
-
-private:
   std::shared_ptr<spdlog::logger> m_logger;
-  std::string m_logsDirectory;
-  std::string m_logFilePath;
 };
 
 } // namespace common
