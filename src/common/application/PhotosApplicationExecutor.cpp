@@ -16,9 +16,14 @@ void PhotosApplicationExecutor::execute()
 {
     //TODO: implement
     cvDom::FrameSourcesReceiver frameReceiver(constants::sourcePhotosFolder);
+    cv::CascadeClassifier faceCascade;
 
-    while (!frameReceiver.isEmpty())
-    {
+    //TODO: awful approach of loading file. Use fylesystem and relative paths
+    // to load the file
+    faceCascade.load("/home/user/TestCpp/face-pos-detector/data/haarcascades/"
+                     "haarcascade_frontalface_alt.xml");
+
+    while (!frameReceiver.isEmpty()) {
         cv::Mat frame;
         frameReceiver >> frame;
 
@@ -29,7 +34,18 @@ void PhotosApplicationExecutor::execute()
 
         //TODO: implement face position detection, face recognition
 
+        std::vector<cv::Rect> faces;
+
+        faceCascade.detectMultiScale(frame, faces, 1.1, 3, 0, cv::Size(20, 20));
+
+        // TEMP CODE TO SHOW DETECTION RESULTS
+        for (size_t i = 0; i < faces.size(); i++) {
+            rectangle(frame, faces[i], cv::Scalar(255, 255, 255), 1, 1, 0);
+        }
+
+        cv::namedWindow("Face", cv::WINDOW_NORMAL);
         cv::imshow("Face", frame);
+
         int k = cv::waitKey(0);
     }
 }
