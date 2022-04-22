@@ -5,3 +5,5 @@ project(face-recognizer)
 
 add_subdirectory(third-party)
 add_subdirectory(src)
+
+install(DIRECTORY data DESTINATION share)

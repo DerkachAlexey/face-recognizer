@@ -17,7 +17,9 @@ inline const std::string applicationName{"FaceRecognizer"};
 // filesystem constants
 
 // TODO: make reusable for different platforms
-inline const std::string projectRoot{"FaceRecognition"};
+inline const auto homeDir = std::string(std::getenv("HOME"));
+inline const std::string configFolder{".config"};
+inline const std::string projectFolder{"FaceRecognition"};
 
 inline const std::string filesExtensionSeparator{"."};
 inline const std::string photosDatabaseFolder{"photosDatabase"};

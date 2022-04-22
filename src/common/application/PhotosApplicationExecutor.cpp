@@ -14,11 +14,23 @@ namespace common
 
 void PhotosApplicationExecutor::execute()
 {
-    //TODO: implement
-    cvDom::FrameSourcesReceiver frameReceiver(constants::sourcePhotosFolder);
+    std::filesystem::current_path(common::constants::homeDir);
+    std::filesystem::current_path(common::constants::configFolder);
+    std::filesystem::current_path(common::constants::projectFolder);
+    std::filesystem::current_path(common::constants::sourcePhotosFolder);
 
-    while (!frameReceiver.isEmpty())
-    {
+    cvDom::FrameSourcesReceiver frameReceiver(
+        std::filesystem::current_path().string());
+    cv::CascadeClassifier faceCascade;
+
+    //TODO: awful approach of loading file. Use fylesystem and relative paths
+    // to load the file
+    faceCascade.load("/usr/local/share/data/haarcascades/"
+                     "haarcascade_frontalface_alt.xml");
+
+    std::filesystem::current_path(common::constants::homeDir);
+
+    while (!frameReceiver.isEmpty()) {
         cv::Mat frame;
         frameReceiver >> frame;
 
@@ -29,7 +41,18 @@ void PhotosApplicationExecutor::execute()
 
         //TODO: implement face position detection, face recognition
 
+        std::vector<cv::Rect> faces;
+
+        faceCascade.detectMultiScale(frame, faces, 1.1, 3, 0, cv::Size(20, 20));
+
+        // TEMP CODE TO SHOW DETECTION RESULTS
+        for (size_t i = 0; i < faces.size(); i++) {
+            rectangle(frame, faces[i], cv::Scalar(255, 255, 255), 1, 1, 0);
+        }
+
+        cv::namedWindow("Face", cv::WINDOW_NORMAL);
         cv::imshow("Face", frame);
+
         int k = cv::waitKey(0);
     }
 }

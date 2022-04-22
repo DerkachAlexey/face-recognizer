@@ -11,13 +11,7 @@ namespace cvDom
 
 FrameSourcesReceiver::FrameSourcesReceiver(const std::string &frameSourcesFolder)
 {
-    const auto curPath = std::filesystem::current_path().string();
-
-    auto photosPathView = curPath +
-                        std::filesystem::path::preferred_separator +
-                        common::constants::sourcePhotosFolder;
-
-    m_currentPath = std::filesystem::path(photosPathView);
+    m_currentPath = std::filesystem::path(frameSourcesFolder);
 
     m_sourceDirIt = std::filesystem::directory_iterator{m_currentPath};
 }

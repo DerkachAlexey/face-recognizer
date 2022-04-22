@@ -6,20 +6,50 @@
 
 #include <filesystem>
 
+void configureLogsFolder()
+{
+    using namespace fr::common;
+
+    if (!std::filesystem::exists(constants::logDirectoryName))
+    {
+        std::filesystem::create_directory(constants::logDirectoryName);
+    }
+}
+
+void configureSourceFolder()
+{
+    using namespace fr::common;
+
+    using namespace fr::common;
+
+    if (!std::filesystem::exists(constants::sourcePhotosFolder))
+    {
+        std::filesystem::create_directory(constants::sourcePhotosFolder);
+    }
+}
+
 void configureFilesystem()
 {
     using namespace fr::common;
 
-    std::filesystem::current_path(std::filesystem::temp_directory_path());
+    std::filesystem::current_path(constants::homeDir);
 
-    const auto& projectRoot = constants::projectRoot;
+    const auto& homePath = std::filesystem::current_path();
 
-    if (!std::filesystem::exists(projectRoot))
+    std::filesystem::current_path(homePath);
+    std::filesystem::current_path(constants::configFolder);
+
+    if (!std::filesystem::exists(constants::projectFolder))
     {
-        std::filesystem::create_directory(projectRoot);
+        std::filesystem::create_directory(constants::projectFolder);
     }
 
-    std::filesystem::current_path(projectRoot);
+    std::filesystem::current_path(constants::projectFolder);
+
+    configureLogsFolder();
+    configureSourceFolder();
+
+    std::filesystem::current_path(constants::homeDir);
 }
 
 void registerServices()
