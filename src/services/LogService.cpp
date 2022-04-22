@@ -12,8 +12,8 @@ namespace services
 
 LogService::LogService()
 {
-    configureLogsDirectory(common::constants::logDirectoryName);
-    configureLogFile(common::constants::logFileName);
+    configureLogsDirectory();
+    configureLogFile();
 }
 
 std::string LogService::getLogFilePath() const
@@ -21,26 +21,19 @@ std::string LogService::getLogFilePath() const
     return m_logFilePath;
 }
 
-void LogService::configureLogsDirectory(const std::string &relativeLogDirectory)
+void LogService::configureLogsDirectory()
 {
-   const auto curPath = std::filesystem::current_path().string();
+    std::filesystem::current_path(common::constants::homeDir);
+    std::filesystem::current_path(common::constants::configFolder);
+    std::filesystem::current_path(common::constants::projectFolder);
+    std::filesystem::current_path(common::constants::logDirectoryName);
 
-   auto logsPathView = curPath +
-                       std::filesystem::path::preferred_separator +
-                       relativeLogDirectory;
+    m_logsDirectory = std::filesystem::current_path();
 
-
-    std::filesystem::path logsPath(logsPathView);
-
-    if (!std::filesystem::exists(logsPath))
-    {
-        std::filesystem::create_directory(logsPath);
-    }
-
-    m_logsDirectory = logsPathView;
+    std::filesystem::current_path(common::constants::homeDir);
 }
 
-void LogService::configureLogFile(const std::string &logFile)
+void LogService::configureLogFile()
 {
     std::filesystem::path logsDir(m_logsDirectory);
 
@@ -49,7 +42,7 @@ void LogService::configureLogFile(const std::string &logFile)
 
     const auto numberOfFile = std::distance(begin(directoryIt), end(directoryIt));
 
-    auto logFileFullName = logFile
+    auto logFileFullName = common::constants::logFileName
                            + common::constants::filesExtensionSeparator
                            + std::to_string(numberOfFile)
                            + common::constants::filesExtensionSeparator

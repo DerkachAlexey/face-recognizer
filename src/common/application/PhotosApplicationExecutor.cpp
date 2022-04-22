@@ -14,14 +14,21 @@ namespace common
 
 void PhotosApplicationExecutor::execute()
 {
-    //TODO: implement
-    cvDom::FrameSourcesReceiver frameReceiver(constants::sourcePhotosFolder);
+    std::filesystem::current_path(common::constants::homeDir);
+    std::filesystem::current_path(common::constants::configFolder);
+    std::filesystem::current_path(common::constants::projectFolder);
+    std::filesystem::current_path(common::constants::sourcePhotosFolder);
+
+    cvDom::FrameSourcesReceiver frameReceiver(
+        std::filesystem::current_path().string());
     cv::CascadeClassifier faceCascade;
 
     //TODO: awful approach of loading file. Use fylesystem and relative paths
     // to load the file
-    faceCascade.load("/home/user/TestCpp/face-pos-detector/data/haarcascades/"
+    faceCascade.load("/usr/local/share/data/haarcascades/"
                      "haarcascade_frontalface_alt.xml");
+
+    std::filesystem::current_path(common::constants::homeDir);
 
     while (!frameReceiver.isEmpty()) {
         cv::Mat frame;

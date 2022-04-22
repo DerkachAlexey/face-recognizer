@@ -35,4 +35,4 @@
 build
 
 #Qt generated files
-*.user
+*txt.user

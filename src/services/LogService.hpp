@@ -19,8 +19,8 @@ public:
     std::string getLogFilePath() const;
 
 private:
-    void configureLogsDirectory(const std::string &relativeLogDirectory);
-    void configureLogFile(const std::string &logFile);
+    void configureLogsDirectory();
+    void configureLogFile();
 
 private:
     std::string m_logsDirectory;
