@@ -10,18 +10,11 @@ namespace cvDom
 namespace enums
 {
 
-// FrameReceiver is dedicated to retrieve frames from
-// videos/folders with folders, etc.
-enum class FramesFormats
+enum class CameraType
 {
-    JPEG = 0,
-    PNG = 1
-};
-
-enum class SourcesType
-{
-    FRAMES_FOLDER = 0,
-    VIDEO = 1
+    WEB_CAMERA = 0,
+    USB_CAMERA = 1,
+    UNKNOW_CAMERA = 2
 };
 
 } // namespace enums

@@ -1,7 +1,10 @@
 set(SRC_CV    IFrameReceiver.hpp
               FrameSourcesReceiver.hpp
+              CameraFramesReceiver.hpp
+              CameraFramesReceiver.cpp
               FrameSourcesReceiver.cpp
-              Enums.hpp)
+              Enums.hpp
+              Constants.hpp)
 
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
