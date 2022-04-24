@@ -3,8 +3,19 @@
 #include "ServicesLocator.hpp"
 #include "LogService.hpp"
 #include "Logger.hpp"
+#include "Constants.hpp"
 
 #include <filesystem>
+
+void configureDatabaseFolder()
+{
+    using namespace fr::common;
+
+    if (!std::filesystem::exists(constants::photosDatabaseFolder))
+    {
+        std::filesystem::create_directory(constants::photosDatabaseFolder);
+    }
+}
 
 void configureLogsFolder()
 {
@@ -18,8 +29,6 @@ void configureLogsFolder()
 
 void configureSourceFolder()
 {
-    using namespace fr::common;
-
     using namespace fr::common;
 
     if (!std::filesystem::exists(constants::sourcePhotosFolder))
@@ -48,6 +57,7 @@ void configureFilesystem()
 
     configureLogsFolder();
     configureSourceFolder();
+    configureDatabaseFolder();
 
     std::filesystem::current_path(constants::homeDir);
 }
@@ -65,15 +75,8 @@ void registerServices()
 
 int main(int argc, char **argv)
 {
-    try
-    {
-        configureFilesystem();
-        registerServices();
-    }
-    catch (...)
-    {
-        return 1;
-    }
+    configureFilesystem();
+    registerServices();
 
     fr::common::Logger logger("main");
 

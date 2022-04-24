@@ -27,8 +27,12 @@ IFrameReceiver &CameraFramesReceiver::operator>>(cv::Mat &outMat)
     {
         m_capture >> outMat;
     }
+    else
+    {
+        m_logger.warn("operator >>, cap is closed");
+    }
 
-    m_logger.warn("operator >>, cap is closed");
+    return *this;
 }
 
 bool CameraFramesReceiver::isEmpty() const

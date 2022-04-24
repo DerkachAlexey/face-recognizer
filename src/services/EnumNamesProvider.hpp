@@ -1,7 +1,8 @@
 #ifndef SERVICES_ENUMNAMESPROVIDER
 #define SERVICES_ENUMNAMESPROVIDER
 
-#include "Enums.hpp"
+#include "common/Enums.hpp"
+#include "cvDomain/Enums.hpp"
 #include "IService.hpp"
 
 #include <string>
@@ -18,6 +19,7 @@ public:
   EnumNamesProvider() = default;
 
   std::string getName(enums::ApplicationMode mode) const;
+  std::string getName(cvDom::enums::CameraType cameraType) const;
 };
 
 } // namespace services

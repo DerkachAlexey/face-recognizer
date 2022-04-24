@@ -14,7 +14,7 @@ enum class CameraType
 {
     WEB_CAMERA = 0,
     USB_CAMERA = 1,
-    UNKNOW_CAMERA = 2
+    UNKNOW = 2
 };
 
 } // namespace enums

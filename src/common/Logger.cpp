@@ -1,7 +1,9 @@
 #include "Logger.hpp"
 #include "LogService.hpp"
 #include "ServicesLocator.hpp"
+#include "Constants.hpp"
 
+#include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
 namespace fr

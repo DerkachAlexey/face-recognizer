@@ -6,5 +6,6 @@ set(SRC_SERVICE
                 LogService.hpp
                 LogService.cpp)
 
-include_directories(../common/)
+include_directories(../)
+
 add_library(services ${SRC_SERVICE})

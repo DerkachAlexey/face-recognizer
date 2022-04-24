@@ -2,10 +2,12 @@
 #define COMMON_LOGGER
 
 #include <memory>
-#include <spdlog/spdlog.h>
 #include <string>
 
-#include "Constants.hpp"
+namespace spdlog
+{
+class logger;
+}
 
 namespace fr
 {

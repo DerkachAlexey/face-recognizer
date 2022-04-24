@@ -25,7 +25,8 @@ enums::ApplicationMode ArgumentsInterpreter::getInterpretedMode() const
             {"video", enums::ApplicationMode::VIDEO},
             {"photo", enums::ApplicationMode::PHOTO},
             {"camera", enums::ApplicationMode::CAMERA},
-            {"stream", enums::ApplicationMode::STREAM}
+            {"stream", enums::ApplicationMode::STREAM},
+            {"registration", enums::ApplicationMode::REGISTRATION}
     };
 
     const auto modeString = m_argsParser.get<std::string>(constants::modeArg);

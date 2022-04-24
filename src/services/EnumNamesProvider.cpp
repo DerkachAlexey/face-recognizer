@@ -15,9 +15,21 @@ std::string EnumNamesProvider::getName(enums::ApplicationMode mode) const {
           {enums::ApplicationMode::PHOTO, "photo"},
           {enums::ApplicationMode::STREAM, "stream"},
           {enums::ApplicationMode::VIDEO, "video"},
+          {enums::ApplicationMode::REGISTRATION, "registration"},
           {enums::ApplicationMode::UNKNOWN, "unknow"}};
 
   return appModesNames.at(mode);
+}
+
+std::string EnumNamesProvider::getName(cvDom::enums::CameraType cameraType) const
+{
+    static const auto camerasNames =
+        std::map<cvDom::enums::CameraType, std::string>{
+            {cvDom::enums::CameraType::WEB_CAMERA, "Web camera"},
+            {cvDom::enums::CameraType::USB_CAMERA, "Usb camera"},
+            {cvDom::enums::CameraType::UNKNOW, "Unknow camera"}};
+
+    return camerasNames.at(cameraType);
 }
 
 } // namespace services

@@ -1,6 +1,7 @@
 #include "PhotosApplicationExecutor.hpp"
 #include "Constants.hpp"
-#include "FrameSourcesReceiver.hpp"
+#include "cvDomain/FrameSourcesReceiver.hpp"
+#include "cvDomain/Constants.hpp"
 #include <opencv2/opencv.hpp>
 
 //TEMP INCLUDES
@@ -25,8 +26,7 @@ void PhotosApplicationExecutor::execute()
 
     //TODO: awful approach of loading file. Use fylesystem and relative paths
     // to load the file
-    faceCascade.load("/usr/local/share/data/haarcascades/"
-                     "haarcascade_frontalface_alt.xml");
+    faceCascade.load(cvDom::constants::haarCascadesPath);
 
     std::filesystem::current_path(common::constants::homeDir);
 

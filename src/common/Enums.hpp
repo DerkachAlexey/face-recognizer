@@ -13,7 +13,8 @@ enum class ApplicationMode
     PHOTO = 1,
     CAMERA = 2,
     STREAM = 3,
-    UNKNOWN = 4
+    REGISTRATION = 4,
+    UNKNOWN = 5
 };
 
 } // namespace enums

@@ -40,7 +40,7 @@ void LogService::configureLogFile()
     auto directoryIt = std::filesystem::directory_iterator(
         logsDir);
 
-    const auto numberOfFile = std::distance(begin(directoryIt), end(directoryIt));
+    const auto numberOfFile = std::distance(begin(directoryIt), end(directoryIt)) + 1;
 
     auto logFileFullName = common::constants::logFileName
                            + common::constants::filesExtensionSeparator

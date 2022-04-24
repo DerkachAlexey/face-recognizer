@@ -6,6 +6,8 @@ set(COMMON_SRC
             application/ApplicationExecutorFactory.hpp
             application/PhotosApplicationExecutor.hpp
             application/PhotosApplicationExecutor.cpp
+            application/PersonRegistrationExecutor.hpp
+            application/PersonRegistrationExecutor.cpp
             application/ApplicationExecutorFactory.cpp
             Constants.hpp
             Logger.hpp
@@ -16,6 +18,7 @@ set(COMMON_SRC
             ArgsInterpreter.cpp
             Enums.hpp)
 
+include_directories(..)
 
 add_library(common ${COMMON_SRC})
 
