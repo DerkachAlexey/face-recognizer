@@ -21,7 +21,9 @@ m_frameReceiver(cvDom::enums::CameraType::WEB_CAMERA)
 
 void PersonRegistrationExecutor::execute()
 {
-    while (!m_frameReceiver.isEmpty()) {
+    m_isRunning = true;
+    while (m_isRunning && !m_frameReceiver.isEmpty())
+    {
 
         cv::Mat frame;
         m_frameReceiver >> frame;
@@ -40,9 +42,9 @@ void PersonRegistrationExecutor::execute()
             rectangle(frame, faces[i], cv::Scalar(255, 255, 255), 1, 1, 0);
         }
 
-        cv::imshow("Face", frame);
+        cv::imshow("registration", frame);
 
-        processKeyPress(cv::waitKey(25));
+        processKeyPress(cv::waitKey(10), frame, faces);
     }
 }
 
@@ -60,9 +62,23 @@ void PersonRegistrationExecutor::configureAlgorithms()
     std::filesystem::current_path(common::constants::homeDir);
 }
 
-void PersonRegistrationExecutor::processKeyPress(int key)
+void PersonRegistrationExecutor::processKeyPress(
+    int key, cv::Mat& photo, std::vector<cv::Rect>& faces)
 {
-    switch
+    if (static_cast<char>(key) == 's')
+    {
+        saveFaceToDB(photo, faces);
+    }
+    else if (key == 27) // ESC
+    {
+        m_isRunning = false;
+    }
+}
+
+void PersonRegistrationExecutor::saveFaceToDB(
+    cv::Mat &faceFrame, std::vector<cv::Rect>& faces)
+{
+
 }
 
 } // namespace fr

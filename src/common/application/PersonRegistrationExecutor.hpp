@@ -21,13 +21,15 @@ public:
 
 private:
     void configureAlgorithms();
-    void processKeyPress(int key);
-    void savePhotoToDB(cv::Mat& faceFrame);
+    void processKeyPress(
+        int key, cv::Mat& photo, std::vector<cv::Rect>& faces);
+    void saveFaceToDB(cv::Mat& faceFrame, std::vector<cv::Rect>& faces);
 
 private:
     cv::CascadeClassifier m_haarCascade;
     cvDom::CameraFramesReceiver m_frameReceiver;
     Logger m_logger{"fr.common.application.PhotosApplicationExecutor"};
+    bool m_isRunning{false};
 };
 
 } // namespace fr
