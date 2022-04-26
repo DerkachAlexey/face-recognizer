@@ -1,9 +1,10 @@
-#include "application/Application.hpp"
+#include "Constants.hpp"
 #include "EnumNamesProvider.hpp"
-#include "ServicesLocator.hpp"
 #include "LogService.hpp"
 #include "Logger.hpp"
-#include "Constants.hpp"
+#include "ServicesLocator.hpp"
+#include "application/Application.hpp"
+#include "database/DBManager.hpp"
 
 #include <filesystem>
 
@@ -68,9 +69,11 @@ void registerServices()
 
     auto namesProvider = std::make_shared<EnumNamesProvider>();
     auto logService = std::make_shared<LogService>();
+    auto dbService = std::make_shared<db::DBManager>();
 
-   ServicesLocator::registerService<EnumNamesProvider>(namesProvider);
-   ServicesLocator::registerService<LogService>(logService);
+    ServicesLocator::registerService<EnumNamesProvider>(namesProvider);
+    ServicesLocator::registerService<LogService>(logService);
+    ServicesLocator::registerService<db::DBManager>(dbService);
 }
 
 int main(int argc, char **argv)

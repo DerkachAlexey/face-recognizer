@@ -1,6 +1,8 @@
 #include "PersonRegistrationExecutor.hpp"
 #include "Constants.hpp"
 #include "cvDomain/Constants.hpp"
+#include "services/ServicesLocator.hpp"
+#include "services/database/DBManager.hpp"
 
 #include <filesystem>
 
@@ -78,7 +80,20 @@ void PersonRegistrationExecutor::processKeyPress(
 void PersonRegistrationExecutor::saveFaceToDB(
     cv::Mat &faceFrame, std::vector<cv::Rect>& faces)
 {
+    const auto pathToPhotos = common::constants::homeDir + std::filesystem::path::preferred_separator
+                            + common::constants::configFolder + std::filesystem::path::preferred_separator
+                            + common::constants::projectFolder + std::filesystem::path::preferred_separator
+                            + common::constants::photosDatabaseFolder + std::filesystem::path::preferred_separator;
 
+    const auto pathToSvedPhoto = pathToPhotos
+                                 + "Oleksii.jpg";
+
+    cv::imwrite(pathToSvedPhoto,faceFrame);
+
+    auto dbManager =
+        services::ServicesLocator::getService<services::db::DBManager>();
+
+    dbManager->write("Oleksii Derkach", pathToSvedPhoto);
 }
 
 } // namespace fr
