@@ -2,6 +2,9 @@
 #include "Constants.hpp"
 #include "cvDomain/FrameSourcesReceiver.hpp"
 #include "cvDomain/Constants.hpp"
+#include "services/PathProvider.hpp"
+#include "services/ServicesLocator.hpp"
+
 #include <opencv2/opencv.hpp>
 
 //TEMP INCLUDES
@@ -15,20 +18,16 @@ namespace common
 
 void PhotosApplicationExecutor::execute()
 {
-    std::filesystem::current_path(common::constants::homeDir);
-    std::filesystem::current_path(common::constants::configFolder);
-    std::filesystem::current_path(common::constants::projectFolder);
-    std::filesystem::current_path(common::constants::sourcePhotosFolder);
+    auto pathProvider =
+        services::ServicesLocator::getService<services::PathProvider>();
 
     cvDom::FrameSourcesReceiver frameReceiver(
-        std::filesystem::current_path().string());
+        pathProvider->getPath(services::enums::Path::SOURCE_PHOTOS));
     cv::CascadeClassifier faceCascade;
 
     //TODO: awful approach of loading file. Use fylesystem and relative paths
     // to load the file
     faceCascade.load(cvDom::constants::haarCascadesPath);
-
-    std::filesystem::current_path(common::constants::homeDir);
 
     while (!frameReceiver.isEmpty()) {
         cv::Mat frame;

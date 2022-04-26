@@ -14,19 +14,7 @@ namespace constants
 
 inline const std::string applicationName{"FaceRecognizer"};
 
-// filesystem constants
-
-// TODO: make reusable for different platforms
-inline const auto homeDir = std::string(std::getenv("HOME"));
-inline const std::string configFolder{".config"};
-inline const std::string projectFolder{"FaceRecognition"};
-
-inline const std::string filesExtensionSeparator{"."};
-inline const std::string photosDatabaseFolder{"photosDatabase"};
-inline const std::string sourcePhotosFolder{"sourcePhotos"};
-
 // logs constants
-inline const std::string logDirectoryName{"logs"};
 inline const std::string logFileName{"FaceRecognition"};
 inline const std::string logFileExtension{"log"};
 inline const std::string logPattern{

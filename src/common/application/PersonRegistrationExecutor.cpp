@@ -2,7 +2,8 @@
 #include "Constants.hpp"
 #include "cvDomain/Constants.hpp"
 #include "services/ServicesLocator.hpp"
-#include "services/database/DBManager.hpp"
+#include "services/DBManager.hpp"
+#include "services/PathProvider.hpp"
 
 #include <filesystem>
 
@@ -52,16 +53,9 @@ void PersonRegistrationExecutor::execute()
 
 void PersonRegistrationExecutor::configureAlgorithms()
 {
-    std::filesystem::current_path(common::constants::homeDir);
-    std::filesystem::current_path(common::constants::configFolder);
-    std::filesystem::current_path(common::constants::projectFolder);
-    std::filesystem::current_path(common::constants::photosDatabaseFolder);
-
     m_haarCascade = cv::CascadeClassifier();
 
     m_haarCascade.load(cvDom::constants::haarCascadesPath);
-
-    std::filesystem::current_path(common::constants::homeDir);
 }
 
 void PersonRegistrationExecutor::processKeyPress(
@@ -80,18 +74,17 @@ void PersonRegistrationExecutor::processKeyPress(
 void PersonRegistrationExecutor::saveFaceToDB(
     cv::Mat &faceFrame, std::vector<cv::Rect>& faces)
 {
-    const auto pathToPhotos = common::constants::homeDir + std::filesystem::path::preferred_separator
-                            + common::constants::configFolder + std::filesystem::path::preferred_separator
-                            + common::constants::projectFolder + std::filesystem::path::preferred_separator
-                            + common::constants::photosDatabaseFolder + std::filesystem::path::preferred_separator;
-
-    const auto pathToSvedPhoto = pathToPhotos
-                                 + "Oleksii.jpg";
-
-    cv::imwrite(pathToSvedPhoto,faceFrame);
-
+    auto pathProvider =
+        services::ServicesLocator::getService<services::PathProvider>();
     auto dbManager =
         services::ServicesLocator::getService<services::db::DBManager>();
+
+    const auto pathToSvedPhoto =
+        pathProvider->getPath(services::enums::Path::PHOTOS_BASE)
+        + std::filesystem::path::preferred_separator
+                             + "Oleksii.jpg";
+
+    cv::imwrite(pathToSvedPhoto,faceFrame);
 
     dbManager->write("Oleksii Derkach", pathToSvedPhoto);
 }

@@ -1,5 +1,8 @@
 #include "LogService.hpp"
-#include "Constants.hpp"
+#include "services/Constants.hpp"
+#include "common/Constants.hpp"
+#include "services/PathProvider.hpp"
+#include "services/ServicesLocator.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -23,14 +26,10 @@ std::string LogService::getLogFilePath() const
 
 void LogService::configureLogsDirectory()
 {
-    std::filesystem::current_path(common::constants::homeDir);
-    std::filesystem::current_path(common::constants::configFolder);
-    std::filesystem::current_path(common::constants::projectFolder);
-    std::filesystem::current_path(common::constants::logDirectoryName);
+    auto pathProvider = ServicesLocator::getService<PathProvider>();
 
-    m_logsDirectory = std::filesystem::current_path();
-
-    std::filesystem::current_path(common::constants::homeDir);
+    m_logsDirectory = std::filesystem::path(
+        pathProvider->getPath(enums::Path::LOGS));
 }
 
 void LogService::configureLogFile()
@@ -43,9 +42,9 @@ void LogService::configureLogFile()
     const auto numberOfFile = std::distance(begin(directoryIt), end(directoryIt)) + 1;
 
     auto logFileFullName = common::constants::logFileName
-                           + common::constants::filesExtensionSeparator
+                           + constants::filesExtensionSeparator
                            + std::to_string(numberOfFile)
-                           + common::constants::filesExtensionSeparator
+                           + constants::filesExtensionSeparator
                            + common::constants::logFileExtension;
 
     const auto &logFilePathView =

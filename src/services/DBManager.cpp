@@ -1,6 +1,8 @@
 #include "DBManager.hpp"
 #include "Constants.hpp"
 #include "common/Constants.hpp"
+#include "services/ServicesLocator.hpp"
+#include "services/PathProvider.hpp"
 
 #include <filesystem>
 
@@ -15,10 +17,13 @@ namespace db
 
 DBManager::DBManager()
 {
+    auto pathProvider = ServicesLocator::getService<PathProvider>();
+    const auto& dbPath = pathProvider->getPath(enums::Path::DATABASE);
+
     leveldb::Options options;
     options.create_if_missing = true;
 
-    leveldb::Status status = leveldb::DB::Open(options, getDBPath(), &m_DB);
+    leveldb::Status status = leveldb::DB::Open(options, dbPath, &m_DB);
 }
 
 void DBManager::write(const std::string &key, const std::string &value)
@@ -37,22 +42,6 @@ std::optional<std::string> DBManager::read(const std::string &key) const
     }
 
     return value;
-}
-
-std::string DBManager::getDBPath() const
-{
-    std::filesystem::current_path(common::constants::homeDir);
-    std::filesystem::current_path(common::constants::configFolder);
-    std::filesystem::current_path(common::constants::projectFolder);
-
-    auto configPath = std::filesystem::current_path();
-    auto dbPath = configPath.string()
-                  + std::filesystem::path::preferred_separator
-                  + db::constants::dbName;
-
-    std::filesystem::current_path(common::constants::homeDir);
-
-    return dbPath;
 }
 
 } // namespace db

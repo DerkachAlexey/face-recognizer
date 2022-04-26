@@ -20,13 +20,11 @@ class DBManager : public IService
 {
 public:
     DBManager();
+
     void write(const std::string &key,
                const std::string &value);
 
     std::optional<std::string> read(const std::string &key) const;
-
-private:
-    std::string getDBPath() const;
 
 private:
     leveldb::DB* m_DB;

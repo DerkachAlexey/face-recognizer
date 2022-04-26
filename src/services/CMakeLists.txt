@@ -3,9 +3,12 @@ set(SRC_SERVICE
                 ServicesLocator.hpp
                 EnumNamesProvider.hpp
                 EnumNamesProvider.cpp
-                database/DBManager.hpp
-                database/DBManager.cpp
-                database/Constants.hpp
+                DBManager.hpp
+                DBManager.cpp
+                PathProvider.hpp
+                PathProvider.cpp
+                Enums.hpp
+                Constants.hpp
                 LogService.hpp
                 LogService.cpp)
 
