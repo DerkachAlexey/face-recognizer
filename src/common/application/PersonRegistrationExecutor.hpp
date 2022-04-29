@@ -28,7 +28,9 @@ private:
 private:
     cv::CascadeClassifier m_haarCascade;
     cvDom::CameraFramesReceiver m_frameReceiver;
+
     Logger m_logger{"fr.common.application.PhotosApplicationExecutor"};
+
     bool m_isRunning{false};
 };
 

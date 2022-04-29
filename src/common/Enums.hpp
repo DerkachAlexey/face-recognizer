@@ -14,7 +14,14 @@ enum class ApplicationMode
     CAMERA = 2,
     STREAM = 3,
     REGISTRATION = 4,
-    UNKNOWN = 5
+    RECOGNITION = 5,
+    UNKNOWN = 6
+};
+
+enum class Extensions
+{
+    JPG = 0,
+    PNG = 1
 };
 
 } // namespace enums

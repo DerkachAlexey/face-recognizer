@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.2, 2022-04-26T20:08:51. -->
+<!-- Written by QtCreator 4.15.2, 2022-04-29T23:13:03. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -298,7 +298,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">face-recognizer</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.face-recognizer</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">face-recognizer</value>
-    <value type="QString" key="RunConfiguration.Arguments">--mode registration</value>
+    <value type="QString" key="RunConfiguration.Arguments">--mode recognition --name Nadia</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
@@ -494,6 +494,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/user/TestCpp/build-face-pos-detector-Imported_Kit-Debug/src</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

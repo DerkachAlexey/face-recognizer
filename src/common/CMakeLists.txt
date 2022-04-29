@@ -9,13 +9,13 @@ set(COMMON_SRC
             application/PersonRegistrationExecutor.hpp
             application/PersonRegistrationExecutor.cpp
             application/ApplicationExecutorFactory.cpp
+            application/PersonRecognitionExecutor.hpp
+            application/PersonRecognitionExecutor.cpp
             Constants.hpp
             Logger.hpp
             Logger.cpp
             UUID.hpp
             UUID.cpp
-	    ArgsInterpreter.hpp
-            ArgsInterpreter.cpp
             Enums.hpp)
 
 include_directories(..)

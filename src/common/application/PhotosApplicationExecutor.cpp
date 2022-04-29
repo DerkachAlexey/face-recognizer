@@ -38,10 +38,7 @@ void PhotosApplicationExecutor::execute()
             m_logger.warn("execute, obtained frame is empty");
         }
 
-        //TODO: implement face position detection, face recognition
-
         std::vector<cv::Rect> faces;
-
         faceCascade.detectMultiScale(frame, faces, 1.1, 3, 0, cv::Size(20, 20));
 
         // TEMP CODE TO SHOW DETECTION RESULTS

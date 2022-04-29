@@ -18,8 +18,9 @@ class EnumNamesProvider : public IService
 public:
   EnumNamesProvider() = default;
 
-  std::string getName(enums::ApplicationMode mode) const;
+  std::string getName(fr::enums::ApplicationMode mode) const;
   std::string getName(cvDom::enums::CameraType cameraType) const;
+  std::string getName(fr::enums::Extensions extension) const;
 };
 
 } // namespace services

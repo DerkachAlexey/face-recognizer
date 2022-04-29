@@ -16,7 +16,7 @@ public:
     void execute() override;
 
 private:
-    Logger m_logger{"fr.common.application.PhotosApplicationExecutor"};
+    Logger m_logger{"fr.common.application.PhotosApplicationExecutor"};    
 };
 
 } // namespace fr

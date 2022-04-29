@@ -1,6 +1,7 @@
 #include "ApplicationExecutorFactory.hpp"
 #include "PhotosApplicationExecutor.hpp"
 #include "PersonRegistrationExecutor.hpp"
+#include "PersonRecognitionExecutor.hpp"
 
 namespace fr
 {
@@ -17,6 +18,8 @@ std::shared_ptr<IApplicationExecutor> ApplicationExecutorFactory::makeAppExecuto
         return std::make_shared<PhotosApplicationExecutor>();
     case enums::ApplicationMode::REGISTRATION:
         return std::make_shared<PersonRegistrationExecutor>();
+    case enums::ApplicationMode::RECOGNITION:
+        return std::make_shared<PersonRecognitionExecutor>();
     default:
         m_logger.error("Provided invalid application mode");
         throw std::invalid_argument("invalid app mode");

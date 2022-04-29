@@ -42,9 +42,9 @@ void LogService::configureLogFile()
     const auto numberOfFile = std::distance(begin(directoryIt), end(directoryIt)) + 1;
 
     auto logFileFullName = common::constants::logFileName
-                           + constants::filesExtensionSeparator
+                           + common::constants::filesExtensionSeparator
                            + std::to_string(numberOfFile)
-                           + constants::filesExtensionSeparator
+                           + common::constants::filesExtensionSeparator
                            + common::constants::logFileExtension;
 
     const auto &logFilePathView =

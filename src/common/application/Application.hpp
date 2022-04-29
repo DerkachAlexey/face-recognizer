@@ -3,7 +3,6 @@
 
 #include "IApplication.hpp"
 #include "Logger.hpp"
-#include "ArgsInterpreter.hpp"
 #include "Enums.hpp"
 
 namespace fr
@@ -18,9 +17,8 @@ public:
     Application(int argc, char **argv);
 
     void startup() override;
-private:    
+private:
     Logger m_logger;
-    ArgumentsInterpreter m_argsInterpreter;
     enums::ApplicationMode m_mode;
 };
 

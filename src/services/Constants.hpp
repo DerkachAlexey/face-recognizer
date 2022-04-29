@@ -21,7 +21,6 @@ inline const auto homeDir = std::string(std::getenv("HOME"));
 inline const std::string configFolder{".config"};
 inline const std::string projectFolder{"FaceRecognition"};
 
-inline const std::string filesExtensionSeparator{"."};
 inline const std::string photosDatabaseFolder{"photosDatabase"};
 inline const std::string sourcePhotosFolder{"sourcePhotos"};
 inline const std::string logDirectoryName{"logs"};

@@ -4,11 +4,10 @@
 #include "services/ServicesLocator.hpp"
 #include "services/DBManager.hpp"
 #include "services/PathProvider.hpp"
+#include "services/EnumNamesProvider.hpp"
+#include "services/ArgsInterpreter.hpp"
 
 #include <filesystem>
-
-//TEMP INCLUDES
-#include <iostream>
 
 namespace fr
 {
@@ -17,7 +16,7 @@ namespace common
 {
 
 PersonRegistrationExecutor::PersonRegistrationExecutor():
-m_frameReceiver(cvDom::enums::CameraType::WEB_CAMERA)
+      m_frameReceiver(cvDom::enums::CameraType::WEB_CAMERA)
 {
     configureAlgorithms();
 }
@@ -27,7 +26,6 @@ void PersonRegistrationExecutor::execute()
     m_isRunning = true;
     while (m_isRunning && !m_frameReceiver.isEmpty())
     {
-
         cv::Mat frame;
         m_frameReceiver >> frame;
 
@@ -39,8 +37,6 @@ void PersonRegistrationExecutor::execute()
         std::vector<cv::Rect> faces;
 
         m_haarCascade.detectMultiScale(frame, faces, 1.1, 3, 0, cv::Size(20, 20));
-
-        // CODE TO SHOW DETECTION RESULTS
         for (size_t i = 0; i < faces.size(); i++) {
             rectangle(frame, faces[i], cv::Scalar(255, 255, 255), 1, 1, 0);
         }
@@ -53,8 +49,6 @@ void PersonRegistrationExecutor::execute()
 
 void PersonRegistrationExecutor::configureAlgorithms()
 {
-    m_haarCascade = cv::CascadeClassifier();
-
     m_haarCascade.load(cvDom::constants::haarCascadesPath);
 }
 
@@ -74,19 +68,52 @@ void PersonRegistrationExecutor::processKeyPress(
 void PersonRegistrationExecutor::saveFaceToDB(
     cv::Mat &faceFrame, std::vector<cv::Rect>& faces)
 {
+    // We should register only one face in image
+    if (faces.size() > 1)
+    {
+        m_logger.warn("saveFaceToDB, there are more than one faces");
+        return;
+    }
+
+    if (faces.size() < 1)
+    {
+        m_logger.warn("saveFaceToDB, there is no face in image");
+        return;
+    }
+
+    auto& faceRect = faces.front();
+    cv::Mat grayFrame;
+    cv::cvtColor(faceFrame, grayFrame, cv::COLOR_BGR2GRAY);
+
+    auto face = grayFrame(faceRect);
+    cv::resize(face, face,
+               {cvDom::constants::defaultPhotoHeight, cvDom::constants::defaultPhotoWidth});
+
     auto pathProvider =
         services::ServicesLocator::getService<services::PathProvider>();
     auto dbManager =
         services::ServicesLocator::getService<services::db::DBManager>();
+    auto enumNamesProvider =
+        services::ServicesLocator::getService<services::EnumNamesProvider>();
+    auto argsInterpreter = services::ServicesLocator::getService<
+        services::ArgumentsInterpreter>();
+
+    const std::string& name = argsInterpreter->getNameToRegister();
 
     const auto pathToSvedPhoto =
         pathProvider->getPath(services::enums::Path::PHOTOS_BASE)
         + std::filesystem::path::preferred_separator
-                             + "Oleksii.jpg";
+        + name
+        + constants::filesExtensionSeparator
+        + enumNamesProvider->getName(enums::Extensions::JPG);
 
-    cv::imwrite(pathToSvedPhoto,faceFrame);
+    cv::imwrite(pathToSvedPhoto, face);
 
-    dbManager->write("Oleksii Derkach", pathToSvedPhoto);
+    if (dbManager->write(name, pathToSvedPhoto))
+    {
+        m_logger.info("Face successfully registered. Welcome " + name);
+        return;
+    }
 }
 
 } // namespace fr

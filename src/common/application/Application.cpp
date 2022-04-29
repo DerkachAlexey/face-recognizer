@@ -3,6 +3,7 @@
 #include "EnumNamesProvider.hpp"
 #include "ServicesLocator.hpp"
 #include "ApplicationExecutorFactory.hpp"
+#include "services/ArgsInterpreter.hpp"
 
 namespace fr
 {
@@ -10,15 +11,16 @@ namespace fr
 namespace common
 {
 
+using namespace fr::services;
+
 Application::Application(int argc, char **argv):
-    m_logger("fr.common.Application"), m_argsInterpreter(argc, argv)
+    m_logger("fr.common.Application")
 {
-    m_mode = m_argsInterpreter.getInterpretedMode();
+    auto argsInterpreter = ServicesLocator::getService<ArgumentsInterpreter>();
+    m_mode = argsInterpreter->getInterpretedMode();
     m_logger.info("Application initialized");
-    m_logger.info("Application mode: " +
-                fr::services::ServicesLocator::getService<
-                    fr::services::EnumNamesProvider>()
-                      ->getName(m_mode));
+    m_logger.info("Application mode: " + ServicesLocator::getService<
+                    EnumNamesProvider>()->getName(m_mode));
 }
 
 void Application::startup()

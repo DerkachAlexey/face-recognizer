@@ -26,9 +26,9 @@ DBManager::DBManager()
     leveldb::Status status = leveldb::DB::Open(options, dbPath, &m_DB);
 }
 
-void DBManager::write(const std::string &key, const std::string &value)
+bool DBManager::write(const std::string &key, const std::string &value)
 {
-    m_DB->Put(leveldb::WriteOptions(), key, value);
+    return m_DB->Put(leveldb::WriteOptions(), key, value).ok();
 }
 
 std::optional<std::string> DBManager::read(const std::string &key) const
@@ -42,6 +42,23 @@ std::optional<std::string> DBManager::read(const std::string &key) const
     }
 
     return value;
+}
+
+std::vector<DBManager::dbNote>
+DBManager::loadAllData() const
+{
+    std::vector<DBManager::dbNote> data;
+
+    auto it = m_DB->NewIterator(leveldb::ReadOptions());
+
+    for (it->SeekToFirst(); it->Valid(); it->Next())
+    {
+        data.emplace_back(it->key().ToString(), it->value().ToString());
+    }
+
+    delete it;
+
+    return data;
 }
 
 } // namespace db

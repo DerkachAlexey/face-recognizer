@@ -3,6 +3,8 @@ set(SRC_SERVICE
                 ServicesLocator.hpp
                 EnumNamesProvider.hpp
                 EnumNamesProvider.cpp
+                ArgsInterpreter.hpp
+                ArgsInterpreter.cpp
                 DBManager.hpp
                 DBManager.cpp
                 PathProvider.hpp

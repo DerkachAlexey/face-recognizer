@@ -6,10 +6,11 @@
 #include "application/Application.hpp"
 #include "services/DBManager.hpp"
 #include "services/PathProvider.hpp"
+#include "services/ArgsInterpreter.hpp"
 
 #include <filesystem>
 
-void registerServices()
+void registerServices(int argc, char **argv)
 {
     using namespace fr::services;
 
@@ -19,15 +20,17 @@ void registerServices()
     auto namesProvider = std::make_shared<EnumNamesProvider>();
     auto logService = std::make_shared<LogService>();
     auto dbService = std::make_shared<db::DBManager>();
+    auto argsInterpreter = std::make_shared<ArgumentsInterpreter>(argc, argv);
 
     ServicesLocator::registerService<EnumNamesProvider>(namesProvider);
     ServicesLocator::registerService<LogService>(logService);
     ServicesLocator::registerService<db::DBManager>(dbService);
+    ServicesLocator::registerService<ArgumentsInterpreter>(argsInterpreter);
 }
 
 int main(int argc, char **argv)
 {
-    registerServices();
+    registerServices(argc, argv);
 
     fr::common::Logger logger("main");
 

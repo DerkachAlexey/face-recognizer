@@ -18,13 +18,15 @@ namespace db
 
 class DBManager : public IService
 {
+    using dbNote = std::pair<std::string, std::string>;
 public:
     DBManager();
 
-    void write(const std::string &key,
+    bool write(const std::string &key,
                const std::string &value);
 
     std::optional<std::string> read(const std::string &key) const;
+    std::vector<dbNote> loadAllData() const;
 
 private:
     leveldb::DB* m_DB;

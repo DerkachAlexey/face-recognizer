@@ -13,6 +13,7 @@ namespace constants
 {
 
 inline const std::string applicationName{"FaceRecognizer"};
+inline const std::string filesExtensionSeparator{"."};
 
 // logs constants
 inline const std::string logFileName{"FaceRecognition"};
@@ -22,6 +23,7 @@ inline const std::string logPattern{
 
 // args constants
 inline const std::string modeArg{"--mode"};
+inline const std::string nameArg{"--name"};
 
 } // namespace constants
 } // namespace common
