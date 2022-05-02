@@ -44,13 +44,15 @@ void PersonRegistrationExecutor::execute()
         }
 
         std::vector<cv::Rect> faces;
+        cv::Mat frameToShow;
+        frame.copyTo(frameToShow);
 
         m_haarCascade.detectMultiScale(frame, faces, 1.1, 3, 0, cv::Size(20, 20));
         for (size_t i = 0; i < faces.size(); i++) {
-            rectangle(frame, faces[i], cv::Scalar(255, 255, 255), 1, 1, 0);
+            rectangle(frameToShow, faces[i], cv::Scalar(255, 255, 255), 1, 1, 0);
         }
 
-        cv::imshow("registration", frame);
+        cv::imshow("registration", frameToShow);
 
         processKeyPress(cv::waitKey(10), frame, faces);
     }

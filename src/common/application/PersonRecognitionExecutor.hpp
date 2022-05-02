@@ -37,7 +37,7 @@ private:
 private:
     cvDom::CameraFramesReceiver m_framesReceiver;
     cv::CascadeClassifier m_faceDetector;
-    cv::Ptr<cv::face::EigenFaceRecognizer> m_faceRecognizer;
+    cv::Ptr<cv::face::FaceRecognizer> m_faceRecognizer;
     std::vector<std::string> m_knownPeople;
 
     Logger m_logger{"fr.common.application.PersonRecognitionExecutor"};
