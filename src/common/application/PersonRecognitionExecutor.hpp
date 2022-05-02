@@ -13,9 +13,14 @@ namespace fr
 namespace common
 {
 
+struct TrainingData
+{
+    std::vector<cv::Mat> photos;
+    std::vector<int> labels;
+};
+
 class PersonRecognitionExecutor : public IApplicationExecutor
 {
-    using PersonInfo = std::pair<std::string, cv::Mat>;
 public:
     PersonRecognitionExecutor();
 
@@ -23,8 +28,8 @@ public:
 
 private:
     void configureAlgorithms();
-    void trainFaceRecognizer(const std::vector<cv::Mat>& DBPhotos);
-    std::vector<cv::Mat> loadDBPhotos();
+    void trainFaceRecognizer(const TrainingData& peopleInfo);
+   TrainingData loadDBPhotos();
     void processKeyPress(int key);
     std::optional<cv::Mat> processPhoto(
         const cv::Mat& frame, const std::vector<cv::Rect>& faces);

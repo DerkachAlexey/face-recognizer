@@ -70,33 +70,38 @@ void PersonRecognitionExecutor::configureAlgorithms()
 }
 
 void PersonRecognitionExecutor::trainFaceRecognizer(
-    const std::vector<cv::Mat>& DBPhotos)
+    const TrainingData& peopleInfo)
 {
-    std::vector<int> labels(DBPhotos.size());
-    std::iota(labels.begin(), labels.end(), 0);
-
-    m_faceRecognizer->train(DBPhotos, labels);
+    m_faceRecognizer->train(peopleInfo.photos, peopleInfo.labels);
 }
 
-std::vector<cv::Mat> PersonRecognitionExecutor::loadDBPhotos()
+TrainingData PersonRecognitionExecutor::loadDBPhotos()
 {
     std::vector<cv::Mat> databasePhotos;
+    std::vector<int> labels;
 
     auto database =
         services::ServicesLocator::getService<services::db::DBManager>();
 
     const auto& loadedData = database->loadAllData();
+    int personNumber = 0;
 
     for (const auto& data : loadedData)
     {
-        // We assume that all files are present
-        auto dbPhoto = cv::imread(data.second);
+        for (auto& dirEntry : std::filesystem::directory_iterator(data.second))
+        {
+            // We assume that all files are present
+            auto dbPhoto = cv::imread(dirEntry.path());
 
-        databasePhotos.push_back(dbPhoto);
+            databasePhotos.push_back(dbPhoto);
+            labels.push_back(personNumber);
+        }
+
+        ++personNumber;
         m_knownPeople.push_back(data.first);
     }
 
-    return databasePhotos;
+    return {databasePhotos, labels};
 }
 
 void PersonRecognitionExecutor::processKeyPress(int key)

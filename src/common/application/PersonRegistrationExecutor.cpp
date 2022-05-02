@@ -19,11 +19,20 @@ PersonRegistrationExecutor::PersonRegistrationExecutor():
       m_frameReceiver(cvDom::enums::CameraType::WEB_CAMERA)
 {
     configureAlgorithms();
+    preprocessUserDatabaseFolder();
 }
 
 void PersonRegistrationExecutor::execute()
 {
-    m_isRunning = true;
+    auto argsInterpreter = services::ServicesLocator::getService<
+        services::ArgumentsInterpreter>();
+    auto dbManager =
+        services::ServicesLocator::getService<services::db::DBManager>();
+    auto pathProvider =
+        services::ServicesLocator::getService<services::PathProvider>();
+
+    const std::string& name = argsInterpreter->getNameToRegister();
+
     while (m_isRunning && !m_frameReceiver.isEmpty())
     {
         cv::Mat frame;
@@ -45,11 +54,31 @@ void PersonRegistrationExecutor::execute()
 
         processKeyPress(cv::waitKey(10), frame, faces);
     }
+
+    if (dbManager->write(name, pathProvider->getUserBasePath(name)))
+    {
+        m_logger.info("Person successfully registered. Welcome " + name);
+    }
+    else
+    {
+        m_logger.error("Person was not registered. See logs");
+    }
 }
 
 void PersonRegistrationExecutor::configureAlgorithms()
 {
     m_haarCascade.load(cvDom::constants::haarCascadesPath);
+}
+
+void PersonRegistrationExecutor::preprocessUserDatabaseFolder()
+{
+    auto pathProvider =
+        services::ServicesLocator::getService<services::PathProvider>();
+    auto argsInterpreter = services::ServicesLocator::getService<
+        services::ArgumentsInterpreter>();
+
+    std::filesystem::remove_all(
+        pathProvider->getUserBasePath(argsInterpreter->getNameToRegister()));
 }
 
 void PersonRegistrationExecutor::processKeyPress(
@@ -81,18 +110,13 @@ void PersonRegistrationExecutor::saveFaceToDB(
         return;
     }
 
-    auto& faceRect = faces.front();
-    cv::Mat grayFrame;
-    cv::cvtColor(faceFrame, grayFrame, cv::COLOR_BGR2GRAY);
+    static int photoNumber = 0;
 
-    auto face = grayFrame(faceRect);
-    cv::resize(face, face,
-               {cvDom::constants::defaultPhotoHeight, cvDom::constants::defaultPhotoWidth});
+    auto& faceRect = faces.front();
+    cv::Mat processedPhoto = processPhoto(faceFrame, faceRect);
 
     auto pathProvider =
         services::ServicesLocator::getService<services::PathProvider>();
-    auto dbManager =
-        services::ServicesLocator::getService<services::db::DBManager>();
     auto enumNamesProvider =
         services::ServicesLocator::getService<services::EnumNamesProvider>();
     auto argsInterpreter = services::ServicesLocator::getService<
@@ -101,19 +125,30 @@ void PersonRegistrationExecutor::saveFaceToDB(
     const std::string& name = argsInterpreter->getNameToRegister();
 
     const auto pathToSvedPhoto =
-        pathProvider->getPath(services::enums::Path::PHOTOS_BASE)
+        pathProvider->getUserBasePath(name)
         + std::filesystem::path::preferred_separator
         + name
+        + std::to_string(photoNumber)
         + constants::filesExtensionSeparator
         + enumNamesProvider->getName(enums::Extensions::JPG);
 
-    cv::imwrite(pathToSvedPhoto, face);
+    cv::imwrite(pathToSvedPhoto, processedPhoto);
 
-    if (dbManager->write(name, pathToSvedPhoto))
-    {
-        m_logger.info("Face successfully registered. Welcome " + name);
-        return;
-    }
+    m_logger.info("Photo " + pathToSvedPhoto +" successfully saved");
+    ++photoNumber;
+}
+
+cv::Mat PersonRegistrationExecutor::processPhoto(
+    const cv::Mat &photoToProcess, const cv::Rect& rectToCrop)
+{
+    cv::Mat grayFrame;
+    cv::cvtColor(photoToProcess, grayFrame, cv::COLOR_BGR2GRAY);
+
+    auto face = grayFrame(rectToCrop);
+    cv::resize(face, face,
+               {cvDom::constants::defaultPhotoHeight, cvDom::constants::defaultPhotoWidth});
+
+    return face;
 }
 
 } // namespace fr

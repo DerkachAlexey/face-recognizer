@@ -151,5 +151,25 @@ std::string PathProvider::getSourcePhotosPath() const
            + constants::sourcePhotosFolder;
 }
 
+std::string PathProvider::getUserBasePath(
+    const std::string& userPath) const
+{
+    auto basePath = getPhotosBasePath();
+    std::filesystem::current_path(basePath);
+
+    if (!std::filesystem::exists(userPath))
+    {
+        std::filesystem::create_directory(userPath);
+    }
+
+    std::filesystem::current_path(userPath);
+
+    const auto& folderPath = std::filesystem::current_path();
+
+    std::filesystem::current_path(getHomePath());
+
+    return folderPath;
+}
+
 } // namespace services
 } // namespace fr

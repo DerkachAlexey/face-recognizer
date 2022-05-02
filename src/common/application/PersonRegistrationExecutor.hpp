@@ -21,9 +21,13 @@ public:
 
 private:
     void configureAlgorithms();
+    void preprocessUserDatabaseFolder();
     void processKeyPress(
         int key, cv::Mat& photo, std::vector<cv::Rect>& faces);
+
     void saveFaceToDB(cv::Mat& faceFrame, std::vector<cv::Rect>& faces);
+    cv::Mat processPhoto(
+        const cv::Mat& photoToProcess, const cv::Rect& rectToCrop);
 
 private:
     cv::CascadeClassifier m_haarCascade;
@@ -31,7 +35,7 @@ private:
 
     Logger m_logger{"fr.common.application.PhotosApplicationExecutor"};
 
-    bool m_isRunning{false};
+    bool m_isRunning{true};
 };
 
 } // namespace fr

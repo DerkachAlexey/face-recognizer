@@ -17,6 +17,8 @@ public:
     PathProvider();
 
     std::string getPath(enums::Path path) const;
+    std::string getUserBasePath(
+        const std::string& userPath) const;
 
 private:
     void configureFilesystem();
@@ -27,7 +29,6 @@ private:
     std::string getProjectFolderPath() const;
     std::string getPhotosBasePath() const;
     std::string getSourcePhotosPath() const;
-
 };
 
 } // namespace services
