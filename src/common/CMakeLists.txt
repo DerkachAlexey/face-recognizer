@@ -9,6 +9,8 @@ set(COMMON_SRC
             application/ApplicationExecutorFactory.cpp
             application/PersonRecognitionExecutor.hpp
             application/PersonRecognitionExecutor.cpp
+            application/PersonRemovalExecutor.hpp
+            application/PersonRemovalExecutor.cpp
             Constants.hpp
             Logger.hpp
             Logger.cpp

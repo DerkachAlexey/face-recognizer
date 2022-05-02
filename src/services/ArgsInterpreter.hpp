@@ -20,13 +20,16 @@ public:
 
     fr::enums::ApplicationMode getInterpretedMode() const;
     std::string getNameToRegister() const;
+    std::string getNameToRemove() const;
 
 private:
     void parseRegistrationArguments();
+    void parseRemovalModeArguments();
 
 private:
     argparse::ArgumentParser m_argsParser;
     argparse::ArgumentParser m_registrationParser;
+    argparse::ArgumentParser m_removalParser;
 };
 
 } // namespace services

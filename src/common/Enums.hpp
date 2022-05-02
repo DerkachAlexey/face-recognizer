@@ -11,7 +11,8 @@ enum class ApplicationMode
 {
     REGISTRATION = 1,
     RECOGNITION = 2,
-    UNKNOWN = 3
+    REMOVAL = 3, // If we want to delete a person from DB
+    UNKNOWN = 4
 };
 
 enum class Extensions

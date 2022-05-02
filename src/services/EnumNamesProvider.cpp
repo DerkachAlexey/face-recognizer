@@ -13,6 +13,7 @@ std::string EnumNamesProvider::getName(enums::ApplicationMode mode) const {
       std::map<enums::ApplicationMode, std::string>{
           {enums::ApplicationMode::REGISTRATION, "registration"},
           {enums::ApplicationMode::RECOGNITION, "recognition"},
+          {enums::ApplicationMode::REMOVAL, "removal"},
           {enums::ApplicationMode::UNKNOWN, "unknow"}};
 
   return appModesNames.at(mode);

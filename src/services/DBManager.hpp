@@ -26,6 +26,7 @@ public:
                const std::string &value);
 
     std::optional<std::string> read(const std::string &key) const;
+    bool remove(const std::string &key);
     std::vector<dbNote> loadAllData() const;
 
 private:

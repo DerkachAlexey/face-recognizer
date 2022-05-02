@@ -43,6 +43,13 @@ std::optional<std::string> DBManager::read(const std::string &key) const
     return value;
 }
 
+bool DBManager::remove(const std::string &key)
+{
+    auto status = m_DB->Delete(leveldb::WriteOptions(), key);
+
+    return status.ok();
+}
+
 std::vector<DBManager::dbNote>
 DBManager::loadAllData() const
 {
