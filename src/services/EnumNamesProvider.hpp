@@ -3,7 +3,7 @@
 
 #include "common/Enums.hpp"
 #include "cvDomain/Enums.hpp"
-#include "IService.hpp"
+#include "services/IService.hpp"
 
 #include <string>
 

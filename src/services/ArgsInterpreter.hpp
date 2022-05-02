@@ -1,7 +1,7 @@
 #ifndef COMMON_ARGSINTERPRETER
 #define COMMON_ARGSINTERPRETER
 
-#include "IService.hpp"
+#include "services/IService.hpp"
 
 #include <argparse/argparse.hpp>
 

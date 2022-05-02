@@ -3,9 +3,9 @@
 
 #include <memory>
 
-#include "Enums.hpp"
-#include "IApplicationExecutor.hpp"
-#include "Logger.hpp"
+#include "common/Enums.hpp"
+#include "common/application/IApplicationExecutor.hpp"
+#include "common/Logger.hpp"
 
 namespace fr
 {

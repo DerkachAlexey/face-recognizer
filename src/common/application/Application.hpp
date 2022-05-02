@@ -1,9 +1,9 @@
 #ifndef COMMON_APPLICATION_APPLICATION_H
 #define COMMON_APPLICATION_APPLICATION_H
 
-#include "IApplication.hpp"
-#include "Logger.hpp"
-#include "Enums.hpp"
+#include "common/application/IApplication.hpp"
+#include "common/Logger.hpp"
+#include "common/Enums.hpp"
 
 namespace fr
 {

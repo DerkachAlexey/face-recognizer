@@ -1,7 +1,6 @@
-#include "ApplicationExecutorFactory.hpp"
-#include "PhotosApplicationExecutor.hpp"
-#include "PersonRegistrationExecutor.hpp"
-#include "PersonRecognitionExecutor.hpp"
+#include "common/application/ApplicationExecutorFactory.hpp"
+#include "common/application/PersonRegistrationExecutor.hpp"
+#include "common/application/PersonRecognitionExecutor.hpp"
 
 namespace fr
 {
@@ -14,8 +13,6 @@ std::shared_ptr<IApplicationExecutor> ApplicationExecutorFactory::makeAppExecuto
 {
     switch (appMode)
     {
-    case enums::ApplicationMode::PHOTO:
-        return std::make_shared<PhotosApplicationExecutor>();
     case enums::ApplicationMode::REGISTRATION:
         return std::make_shared<PersonRegistrationExecutor>();
     case enums::ApplicationMode::RECOGNITION:

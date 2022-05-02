@@ -1,7 +1,7 @@
 #include "Application.hpp"
-#include "Constants.hpp"
-#include "EnumNamesProvider.hpp"
-#include "ServicesLocator.hpp"
+#include "common/Constants.hpp"
+#include "services/EnumNamesProvider.hpp"
+#include "services/ServicesLocator.hpp"
 #include "ApplicationExecutorFactory.hpp"
 #include "services/ArgsInterpreter.hpp"
 

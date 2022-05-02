@@ -2,8 +2,8 @@
 #define COMMON_APPLICATION_PERSONRECOGNITIONEXECUTOR_HPP
 
 #include "cvDomain/CameraFramesReceiver.hpp"
-#include "IApplicationExecutor.hpp"
-#include "Logger.hpp"
+#include "common/application/IApplicationExecutor.hpp"
+#include "common/Logger.hpp"
 
 #include <opencv2/face.hpp>
 

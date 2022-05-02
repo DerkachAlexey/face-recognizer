@@ -1,9 +1,9 @@
-#include "Constants.hpp"
-#include "EnumNamesProvider.hpp"
-#include "LogService.hpp"
-#include "Logger.hpp"
-#include "ServicesLocator.hpp"
-#include "application/Application.hpp"
+#include "common/Constants.hpp"
+#include "services/EnumNamesProvider.hpp"
+#include "services/LogService.hpp"
+#include "common/Logger.hpp"
+#include "services/ServicesLocator.hpp"
+#include "common/application/Application.hpp"
 #include "services/DBManager.hpp"
 #include "services/PathProvider.hpp"
 #include "services/ArgsInterpreter.hpp"
@@ -17,8 +17,8 @@ void registerServices(int argc, char **argv)
     auto pathProvider = std::make_shared<PathProvider>();
     ServicesLocator::registerService<PathProvider>(pathProvider);
 
-    auto namesProvider = std::make_shared<EnumNamesProvider>();
     auto logService = std::make_shared<LogService>();
+    auto namesProvider = std::make_shared<EnumNamesProvider>();
     auto dbService = std::make_shared<db::DBManager>();
     auto argsInterpreter = std::make_shared<ArgumentsInterpreter>(argc, argv);
 

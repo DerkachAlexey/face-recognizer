@@ -1,6 +1,6 @@
-#include "CameraFramesReceiver.hpp"
-#include "ServicesLocator.hpp"
-#include "EnumNamesProvider.hpp"
+#include "cvDomain/CameraFramesReceiver.hpp"
+#include "services/ServicesLocator.hpp"
+#include "services/EnumNamesProvider.hpp"
 
 namespace fr
 {

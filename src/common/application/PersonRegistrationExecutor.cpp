@@ -1,5 +1,5 @@
-#include "PersonRegistrationExecutor.hpp"
-#include "Constants.hpp"
+#include "common/application/PersonRegistrationExecutor.hpp"
+#include "common/Constants.hpp"
 #include "cvDomain/Constants.hpp"
 #include "services/ServicesLocator.hpp"
 #include "services/DBManager.hpp"

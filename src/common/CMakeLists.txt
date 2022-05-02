@@ -4,8 +4,6 @@ set(COMMON_SRC
             application/Application.hpp
             application/Application.cpp
             application/ApplicationExecutorFactory.hpp
-            application/PhotosApplicationExecutor.hpp
-            application/PhotosApplicationExecutor.cpp
             application/PersonRegistrationExecutor.hpp
             application/PersonRegistrationExecutor.cpp
             application/ApplicationExecutorFactory.cpp

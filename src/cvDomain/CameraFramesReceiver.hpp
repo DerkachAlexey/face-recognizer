@@ -1,9 +1,9 @@
 #ifndef CV_CAMERAFRAMESRECEIVER_H
 #define CV_CAMERAFRAMESRECEIVER_H
 
-#include "IFrameReceiver.hpp"
-#include "Enums.hpp"
-#include "Logger.hpp"
+#include "cvDomain/IFrameReceiver.hpp"
+#include "cvDomain/Enums.hpp"
+#include "common/Logger.hpp"
 #include <opencv2/opencv.hpp>
 
 

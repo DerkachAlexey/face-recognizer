@@ -1,6 +1,6 @@
-include_directories(common)
-include_directories(services)
-include_directories(cvDomain)
+#include_directories(common)
+#include_directories(services)
+#include_directories(cvDomain)
 include_directories(.)
 
 add_subdirectory(common)

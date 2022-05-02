@@ -1,8 +1,8 @@
 #ifndef COMMON_APPLICATION_PERSONREGISTRATIONEXECUTOR_H
 #define COMMON_APPLICATION_PERSONREGISTRATIONEXECUTOR_H
 
-#include "IApplicationExecutor.hpp"
-#include "Logger.hpp"
+#include "common/application/IApplicationExecutor.hpp"
+#include "common/Logger.hpp"
 #include "cvDomain/CameraFramesReceiver.hpp"
 
 #include <opencv2/opencv.hpp>

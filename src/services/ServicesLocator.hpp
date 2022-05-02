@@ -3,8 +3,8 @@
 
 #include <map>
 
-#include "Logger.hpp"
-#include "UUID.hpp"
+#include "common/Logger.hpp"
+#include "common/UUID.hpp"
 
 namespace fr
 {

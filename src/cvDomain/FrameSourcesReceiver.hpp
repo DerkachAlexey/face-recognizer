@@ -1,7 +1,7 @@
 #ifndef CV_FRAMESOURCESRECEIVER_H
 #define CV_FRAMESOURCESRECEIVER_H
 
-#include "IFrameReceiver.hpp"
+#include "cvDomain/IFrameReceiver.hpp"
 #include <filesystem>
 #include <string>
 

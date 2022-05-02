@@ -1,4 +1,4 @@
-#include "ArgsInterpreter.hpp"
+#include "services/ArgsInterpreter.hpp"
 #include "common/Constants.hpp"
 
 namespace fr
@@ -32,11 +32,7 @@ ArgumentsInterpreter::ArgumentsInterpreter(int argc, char **argv):
 enums::ApplicationMode ArgumentsInterpreter::getInterpretedMode() const
 {
     static const std::map<std::string, enums::ApplicationMode> kMods
-    {
-            {"video", enums::ApplicationMode::VIDEO},
-            {"photo", enums::ApplicationMode::PHOTO},
-            {"camera", enums::ApplicationMode::CAMERA},
-            {"stream", enums::ApplicationMode::STREAM},
+    {           
             {"registration", enums::ApplicationMode::REGISTRATION},
             {"recognition", enums::ApplicationMode::RECOGNITION}
     };

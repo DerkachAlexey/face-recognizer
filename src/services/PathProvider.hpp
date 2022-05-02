@@ -1,7 +1,7 @@
 #ifndef SERVICES_PATHPROVIDER_H
 #define SERVICES_PATHPROVIDER_H
 
-#include "IService.hpp"
+#include "services/IService.hpp"
 #include "services/Enums.hpp"
 #include <string>
 

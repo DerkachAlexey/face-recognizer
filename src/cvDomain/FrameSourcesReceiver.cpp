@@ -1,5 +1,5 @@
-#include "FrameSourcesReceiver.hpp"
-#include "Constants.hpp"
+#include "cvDomain/FrameSourcesReceiver.hpp"
+#include "common/Constants.hpp"
 #include <opencv2/opencv.hpp>
 #include <filesystem>
 

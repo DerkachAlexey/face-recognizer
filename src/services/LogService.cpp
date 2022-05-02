@@ -1,4 +1,4 @@
-#include "LogService.hpp"
+#include "services/LogService.hpp"
 #include "services/Constants.hpp"
 #include "common/Constants.hpp"
 #include "services/PathProvider.hpp"

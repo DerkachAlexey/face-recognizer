@@ -1,7 +1,7 @@
 #ifndef SERVICES_LOGSERVICE_HPP
 #define SERVICES_LOGSERVICE_HPP
 
-#include "IService.hpp"
+#include "services/IService.hpp"
 
 #include <string>
 

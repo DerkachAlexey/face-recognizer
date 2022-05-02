@@ -1,4 +1,4 @@
-#include "EnumNamesProvider.hpp"
+#include "services/EnumNamesProvider.hpp"
 
 #include <map>
 
@@ -11,10 +11,6 @@ namespace services
 std::string EnumNamesProvider::getName(enums::ApplicationMode mode) const {
   static const auto appModesNames =
       std::map<enums::ApplicationMode, std::string>{
-          {enums::ApplicationMode::CAMERA, "camera"},
-          {enums::ApplicationMode::PHOTO, "photo"},
-          {enums::ApplicationMode::STREAM, "stream"},
-          {enums::ApplicationMode::VIDEO, "video"},
           {enums::ApplicationMode::REGISTRATION, "registration"},
           {enums::ApplicationMode::RECOGNITION, "recognition"},
           {enums::ApplicationMode::UNKNOWN, "unknow"}};

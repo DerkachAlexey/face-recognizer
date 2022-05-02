@@ -9,13 +9,9 @@ namespace enums
 
 enum class ApplicationMode
 {
-    VIDEO = 0,
-    PHOTO = 1,
-    CAMERA = 2,
-    STREAM = 3,
-    REGISTRATION = 4,
-    RECOGNITION = 5,
-    UNKNOWN = 6
+    REGISTRATION = 1,
+    RECOGNITION = 2,
+    UNKNOWN = 3
 };
 
 enum class Extensions
