@@ -14,7 +14,9 @@ ArgumentsInterpreter::ArgumentsInterpreter(int argc, char **argv):
         .required()
         .help("specify the mode of application (registration, removal, recognition)");
 
-    m_argsParser.add_argument(common::constants::nameArg);
+    m_argsParser.add_argument(common::constants::nameArg)
+        .help("name is required parameter for registration and removal modes. "
+              "Specify the name of the person to register/remove");
 
     m_argsParser.parse_args(argc, argv);
 
