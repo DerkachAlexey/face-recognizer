@@ -10,4 +10,4 @@
 build
 
 #Qt generated files
-*txt.user
+CMakeLists.txt.user
