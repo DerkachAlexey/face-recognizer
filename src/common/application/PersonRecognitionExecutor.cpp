@@ -14,7 +14,8 @@ namespace common
 
 PersonRecognitionExecutor::PersonRecognitionExecutor():
       m_framesReceiver(cvDom::enums::CameraType::WEB_CAMERA),
-      m_faceRecognizer(cv::face::EigenFaceRecognizer::create())
+      // experimantal parameters for EigenFaceRecognizer
+      m_faceRecognizer(cv::face::EigenFaceRecognizer::create(150, 6000))
 {
     configureAlgorithms();
 }
@@ -41,20 +42,37 @@ void PersonRecognitionExecutor::execute()
             rectangle(frameToShow, faces[i], cv::Scalar(255, 255, 255), 1, 1, 0);
         }
 
-        cv::imshow("recognition", frameToShow);
-
         auto processedPhoto = processPhoto(frame, faces);
 
         if (!processedPhoto)
         {
+            cv::imshow("recognition", frameToShow);
+            processKeyPress(cv::waitKey(10));
             continue;
         }
 
         auto predictedLabel = m_faceRecognizer->predict(*processedPhoto);
+        std::string recognizedPersonName;
 
-        m_logger.info("execute, recognized person: "
-                      + m_knownPeople.at(predictedLabel));
+        if (predictedLabel < 0 || predictedLabel > m_knownPeople.size() - 1)
+        {
+            recognizedPersonName = "Unrecognized";
+            m_logger.warn("execute, person was not recognized");
+        }
+        else
+        {
+            recognizedPersonName = m_knownPeople.at(predictedLabel);
+            m_logger.info("execute, recognized person: "
+                          + recognizedPersonName);
+        }
 
+        cv::putText(
+            frameToShow,
+            recognizedPersonName,
+            faces.at(0).tl(), 2, 1,
+            cv::Scalar(255, 255, 255), 2);
+
+        cv::imshow("recognition", frameToShow);
 
         processKeyPress(cv::waitKey(10));
     }

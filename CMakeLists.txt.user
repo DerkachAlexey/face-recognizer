@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.2, 2022-05-08T16:46:11. -->
+<!-- Written by QtCreator 4.15.2, 2022-05-08T19:02:03. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -343,7 +343,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">face-recognizer</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.face-recognizer</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">face-recognizer</value>
-    <value type="QString" key="RunConfiguration.Arguments">--mode registration</value>
+    <value type="QString" key="RunConfiguration.Arguments">--mode recognition</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
