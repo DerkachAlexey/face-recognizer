@@ -12,7 +12,7 @@ namespace common
 namespace constants
 {
 
-inline const std::string applicationName{"FaceRecognizer"};
+inline const std::string applicationName{"face-recognizer"};
 inline const std::string filesExtensionSeparator{"."};
 
 // logs constants

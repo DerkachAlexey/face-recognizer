@@ -18,7 +18,15 @@ ArgumentsInterpreter::ArgumentsInterpreter(int argc, char **argv):
         .help("name is required parameter for registration and removal modes. "
               "Specify the name of the person to register/remove");
 
-    m_argsParser.parse_args(argc, argv);
+    try
+    {
+        m_argsParser.parse_args(argc, argv);
+    }
+    catch (const std::exception& err) {
+        std::cerr << err.what() << std::endl;
+        std::cerr << m_argsParser;
+        std::exit(1);
+    }
 
     switch(getInterpretedMode())
     {
@@ -46,6 +54,12 @@ enums::ApplicationMode ArgumentsInterpreter::getInterpretedMode() const
         common::constants::modeArg);
     const auto foundIt = kMods.find(modeString);
 
+    if (foundIt == kMods.cend())
+    {
+        std::cerr << "invalid mode: " << modeString << std::endl;
+        std::exit(1);
+    }
+
     return foundIt == kMods.cend()
                ? enums::ApplicationMode::UNKNOWN
                : foundIt->second;
@@ -65,26 +79,34 @@ std::string ArgumentsInterpreter::getNameToRemove() const
 
 void services::ArgumentsInterpreter::parseRegistrationArguments()
 {
-    m_registrationParser = argparse::ArgumentParser("registration");
-    m_registrationParser.add_argument(common::constants::nameArg)
-        .required()
-        .help("enter name of the person to register");
+    m_argsParser[common::constants::nameArg]
+    .required()
+    .help("enter name of the person to register");
 
-    m_registrationParser.add_parents(m_argsParser);
-
-    m_registrationParser.parse_args({common::constants::nameArg});
+    try
+    {
+        m_argsParser.parse_args({common::constants::nameArg});
+    }
+    catch (const std::exception& err) {
+        std::cerr << m_argsParser[common::constants::nameArg];
+        std::exit(1);
+    }
 }
 
 void ArgumentsInterpreter::parseRemovalModeArguments()
 {
-    m_removalParser = argparse::ArgumentParser("removal");
-    m_removalParser.add_argument(common::constants::nameArg)
+    m_argsParser[common::constants::nameArg]
         .required()
-        .help("enter name of the person to remove from DB");
+        .help("enter name of the person to remove");
 
-    m_removalParser.add_parents(m_argsParser);
-
-    m_removalParser.parse_args({common::constants::nameArg});
+    try
+    {
+        m_argsParser.parse_args({common::constants::nameArg});
+    }
+    catch (const std::exception& err) {
+        std::cerr << m_argsParser[common::constants::nameArg];
+        std::exit(1);
+    }
 }
 
 } // namespace services
